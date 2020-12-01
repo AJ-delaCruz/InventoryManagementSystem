@@ -3,37 +3,77 @@ package Model;
 import java.util.ArrayList;
 
 public class InventorySystem {
-    ArrayList<Product> products = new ArrayList<>();
+    ArrayList<LineProduct> products;
 
+    /**
+     * Constructor for the InventorySystem
+     * class.
+     */
+    public InventorySystem(){
+        products = new ArrayList<>();
+    }
+
+    /**
+     * Adds a product to the products
+     * ArrayList.
+     * @param newItem new product
+     */
     public void addProduct(Product newItem){
         products.add(newItem);
     }
 
-    public void removeProduct(Product item){
-        products.remove(item);
+    /**
+     * Removes a product from
+     * the products ArrayList
+     * @param item to be removed
+     * @precondition item must be on ArrayList
+     * @return
+     */
+    public boolean removeProduct(Product item){
+        if(products.contains(item)){
+            return products.remove(item);
+        }
+        else{
+            return false;
+        }
     }
 
-    public boolean findProduct(Product find){
-        return true;
-    }
+    /**
+     * Converts the Product to
+     * DiscountedItem.
+     * @param invoiceNumber
+     * @param discount product discount
+     */
     public void addDiscount(Product invoiceNumber, double discount){
-        for (Product invoice : products){
+        for (LineProduct invoice : products){
             if (invoice == invoiceNumber){
-               invoice.setPrice(invoice.getPrice() * discount);
-            }
-        }
-    }
-    public void removeDiscount(Product invoiceNumber){
-        for (Product invoice : products){
-            if (invoice == invoiceNumber){
-                invoice.setPrice(invoice.getPrice());
+                DiscountProduct discounted = new DiscountProduct(invoice, discount);
             }
         }
     }
 
+    /**
+     * Converts the DiscountedItem to
+     * Product.
+     * @param invoiceNumber
+     */
+    public void removeDiscount(LineProduct invoiceNumber){
+        for (LineProduct invoice : products){
+            if (invoice == invoiceNumber){
+                Product revised = (Product) invoice;
+            }
+        }
+    }
+
+    /**
+     * Prints the stock of a
+     * product.
+     * @param invoiceNumber
+     * @return stock of product
+     */
     public int printStock (Product invoiceNumber) {
         int stock = 0;
-        for (Product invoice : products) {
+        for (LineProduct invoice : products) {
             if (invoice == invoiceNumber) {
                 stock = invoice.getStock();
             }
@@ -41,23 +81,43 @@ public class InventorySystem {
         return stock;
     }
 
+    /**
+     * Prints all the categories
+     * to shop.
+     * @return list of categories
+     */
     public String printCategories(){
         String categories = "";
-        for (Product categ : products){
-            categories += categ.getCategory();
+        for (LineProduct type : products){
+            categories += type.getCategory();
         }
         return categories;
     }
 
+    /**
+     * Prints all the discounted items
+     * to shop
+     * @return discounted items
+     */
     public String printDiscountedProduct(){
         String discounts = "";
-        for (Product discountProduct : products){
-            discounts += discountProduct.getName();
+        for (LineProduct discountProduct : products){
+            if(discountProduct instanceof DiscountProduct){
+                discounts += discountProduct.getName();
+            }
         }
         return discounts;
     }
 
+    /**
+     * Returns all items in inventory
+     * @return
+     */
     public String allProduct(){
-        return "";
+        String list = "";
+        for (LineProduct items : products){
+            list += items.getName();
+        }
+        return list;
     }
 }

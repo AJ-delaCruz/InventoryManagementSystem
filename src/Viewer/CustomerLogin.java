@@ -104,4 +104,21 @@ public class CustomerLogin extends JFrame {
 }
 
 
+//test for customer login. need a frame after logging in as a customer
+class WelcomeFrame extends JFrame {
+    public WelcomeFrame() {
+        JLabel welcome = new JLabel("Welcome");
+        add(welcome);
+        setVisible(true);
+        setSize(300, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Welcome");
+    }
+
+
+}
+
+
+
+
 

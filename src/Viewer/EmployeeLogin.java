@@ -103,17 +103,3 @@ public class EmployeeLogin extends JFrame {
 
 }
 
-
-//test
-class WelcomeFrame extends JFrame {
-    public WelcomeFrame() {
-        JLabel welcome = new JLabel("Welcome");
-        add(welcome);
-        setVisible(true);
-        setSize(300, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Welcome");
-    }
-
-
-}

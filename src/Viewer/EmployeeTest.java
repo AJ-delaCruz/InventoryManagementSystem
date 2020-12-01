@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//just a test
 public class EmployeeTest {
 
     public ArrayList<Employee> load() {
