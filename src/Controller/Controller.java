@@ -77,7 +77,7 @@ public class Controller {
             if (message.getClass() != ModifyStockMessage.class) {
                 return ValveResponse.MISS;
             }
-            // otherwise message is of HitMessage type
+            // otherwise message is of ModifyStockMessage type
             // actions in Model and View
             return ValveResponse.EXECUTED;
         }
@@ -90,7 +90,7 @@ public class Controller {
             if (message.getClass() != LoginMessage.class) {
                 return ValveResponse.MISS;
             }
-            // otherwise message is of HitMessage type
+            // otherwise message is of LoginMessage type
             // actions in Model and View
             return ValveResponse.EXECUTED;
         }
