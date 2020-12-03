@@ -52,6 +52,8 @@ public class HomePage extends JFrame {
         employeeLogin.addActionListener(event -> {
             try {
                 this.queue.put(new LoginMessage()); // <--- login to the queue
+                setVisible(false);
+                (new EmployeeLogin()).setVisible(true);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
