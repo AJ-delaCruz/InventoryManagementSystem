@@ -1,4 +1,4 @@
-package Viewer;
+package View;
 
 import Model.Customer;
 

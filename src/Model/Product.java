@@ -18,6 +18,9 @@ public class Product implements LineProduct {
         this.stock = stock;
         this.invoiceNumber = invoiceNumber;
     }
+    public Product() {
+
+    }
 
     /**
      * Constructor for the Product class
@@ -39,6 +42,7 @@ public class Product implements LineProduct {
         this.tax = price;
         this.sale = sale;
     }
+
 
     /**
      * Returns the product name

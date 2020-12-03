@@ -1,8 +1,7 @@
-package Viewer;
+package View;
 
 import Model.Employee;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

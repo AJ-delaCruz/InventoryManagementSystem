@@ -1,13 +1,28 @@
-package Viewer;
+package View;
+
+import Controller.LoginMessage;
+import Controller.Message;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.BlockingQueue;
 
 
 public class HomePage extends JFrame {
+    private BlockingQueue<Message> queue;
 
-    public HomePage()  {
+    public static HomePage init(BlockingQueue<Message> queue) {
+        // Create object of type view
+        return new HomePage(queue);
+    }
 
+    public HomePage(BlockingQueue<Message> queue)  {
+        this.queue = queue;
+        // TODO:
+        // you should initalize JFrame and show it,
+        // JFrame should be able to add Messages to queue
+        // JFrame can be in a separate class or created JFrame with all the elements in this class
+        // or you can make View a subclass of JFrame by extending it
 
         JPanel panel = new JPanel();
         JPanel logInPanel = new JPanel();
@@ -23,13 +38,24 @@ public class HomePage extends JFrame {
         });
 
         JButton employeeLogin = new JButton("Employee");
-        employeeLogin.addActionListener(event -> {
+
+      /*  employeeLogin.addActionListener(event -> {
             setVisible(false);
             (new EmployeeLogin()).setVisible(true);
         });
-        //logInPanel.add(logInTitle);
+
+        //logInPanel.add(logInTitle);*/
         logInPanel.add(customerLogin);
         logInPanel.add(employeeLogin);
+
+        //employee message
+        employeeLogin.addActionListener(event -> {
+            try {
+                this.queue.put(new LoginMessage()); // <--- login to the queue
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
 
 
         JLabel signUpTitle = new JLabel("Sign up as:");
@@ -60,8 +86,20 @@ public class HomePage extends JFrame {
 
     }
 
+    public void change() {
+        // TODO: do all the updates and repaint
+        //Homepage.repaint();
+    }
+
+    public void dispose() {
+        // TODO: clear all the resources
+        // for example, Homepage.dispose();
+    }
+
+
+
     public static void main(String[] args) {
-        JFrame frame = new HomePage();
+       // JFrame frame = new HomePage();
 
 
 
