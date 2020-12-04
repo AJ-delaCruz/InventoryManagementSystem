@@ -96,7 +96,7 @@ public class EmployeeLogin extends JFrame {
 
     //test
     public static void main(String[] args) {
-        JFrame frame = new EmployeeLogin();
+      //  JFrame frame = new EmployeeLogin();
 
     }
 

@@ -16,7 +16,7 @@ public class InventoryManagement {
 
         public static void main(String[] args) {
             view = HomePage.init(queue);
-            model = new ArrayList<Product>();
+            model = new ArrayList<>();
             Controller controller = new Controller(view, model, queue);
 
             controller.mainLoop();

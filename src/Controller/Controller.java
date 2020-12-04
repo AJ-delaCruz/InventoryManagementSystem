@@ -12,7 +12,7 @@ public class Controller {
     private BlockingQueue<Message> queue;
     private HomePage view; // Direct reference to view
     private ArrayList<Product> model; // Direct reference to model
-    private EmployeeInfo employeeInfo; // Direct reference to the state of employee page
+    //private EmployeeInfo employeeInfo; // Direct reference to the state of employee page
     private Inventory inventoryView;
     private List<Valve> valves = new LinkedList<Valve>();
 
@@ -60,6 +60,7 @@ public class Controller {
          ValveResponse execute(Message message);
     }
 
+    // TODO: 12/4/20 updateInventory 
     private class AddProductValve implements Valve {
         @Override
         public ValveResponse execute(Message message) {

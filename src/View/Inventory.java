@@ -1,8 +1,6 @@
 package View;
 
-import Controller.AddProductMessage;
 import Controller.Message;
-import Model.InventorySystem;
 import Model.LineProduct;
 import Model.Product;
 
@@ -121,7 +119,7 @@ public class Inventory extends JFrame {
 
         public static void main(String[] args) {
         //test
-       // Inventory l = new Inventory();
+       Inventory l = new Inventory();
     }
 
 
