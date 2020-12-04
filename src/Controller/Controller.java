@@ -3,6 +3,7 @@ package Controller;
 import Model.Product;
 import View.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -10,15 +11,16 @@ import java.util.concurrent.BlockingQueue;
 public class Controller {
     private BlockingQueue<Message> queue;
     private HomePage view; // Direct reference to view
-    private Product model; // Direct reference to model
+    private ArrayList<Product> model; // Direct reference to model
     private EmployeeInfo employeeInfo; // Direct reference to the state of employee page
-
+    private Inventory inventoryView;
     private List<Valve> valves = new LinkedList<Valve>();
 
-    public Controller(HomePage view, Product model, BlockingQueue<Message> queue) {
+    public Controller(HomePage view, ArrayList<Product> model, BlockingQueue<Message> queue) {
         this.view = view;
-        this.model = model;
+        this.model = new ArrayList<>();
         this.queue = queue;
+        valves.add(new LoginValve());
         valves.add(new AddProductValve());
         valves.add(new ModifyStockValve());
     }
@@ -55,7 +57,7 @@ public class Controller {
         /**
          * Performs certain action in response to message
          */
-        public ValveResponse execute(Message message);
+         ValveResponse execute(Message message);
     }
 
     private class AddProductValve implements Valve {
@@ -65,12 +67,19 @@ public class Controller {
                 return ValveResponse.MISS;
             }
             // otherwise it means that it is a AddProductMessage message
+            //implement
             // actions in Model
             // actions in View
+            AddProductMessage productMessage = (AddProductMessage) message;
+            //studentModel.setName(nameMessage.getName()); // update model
+            model.add(new Product(productMessage.getName(), productMessage.getCategory(),
+                    productMessage.getPrice(), productMessage.getStock(),productMessage.getInvoiceNumber()));
+            ///inventoryView.updateInventory(..); // update inventory
             return ValveResponse.EXECUTED;
         }
     }
 
+    //maybe delete if don't have time
     private class ModifyStockValve implements Valve {
         @Override
         public ValveResponse execute(Message message) {

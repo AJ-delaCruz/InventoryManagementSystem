@@ -33,7 +33,7 @@ public class EmployeeLogin extends JFrame {
             for (Employee x : employees) {
                 if (x.getAccountNumber() == name && x.getPassword().equals(password)) {
                     setVisible(false);
-                    (new AddProduct()).setVisible(true);
+                    (new Inventory()).setVisible(true);
 
                 } else JOptionPane.showMessageDialog(EmployeeLogin.this, "Wrong username or password",
                         "Warning", JOptionPane.WARNING_MESSAGE);

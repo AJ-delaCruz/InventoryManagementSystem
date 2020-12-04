@@ -54,6 +54,11 @@ public class DiscountProduct implements LineProduct{
         return product.getCategory();
     }
 
+    @Override
+    public int getInvoiceNumber() {
+        return 0;
+    }
+
     /**
      * Returns the money saved
      * from the discount

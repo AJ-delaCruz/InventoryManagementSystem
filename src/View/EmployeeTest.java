@@ -1,3 +1,4 @@
+/*
 package View;
 
 import Model.Employee;
@@ -16,8 +17,10 @@ public class EmployeeTest {
             File myFile = new File("employees.txt"); //reads file
             Scanner inputFile = new Scanner(myFile);
 
-            /*int nameID;
-            String pwd;*/
+            */
+/*int nameID;
+            String pwd;*//*
+
             while (inputFile.hasNextLine()) {
 
                 String line = inputFile.nextLine();
@@ -50,3 +53,4 @@ public class EmployeeTest {
 
 
 }
+*/

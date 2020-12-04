@@ -2,8 +2,8 @@ package Model;
 
 import java.util.ArrayList;
 
-public class InventorySystem {
-    ArrayList<LineProduct> products;
+public class InventorySystem extends Product{
+    ArrayList<Product> products;
 
     /**
      * Constructor for the InventorySystem
@@ -18,9 +18,19 @@ public class InventorySystem {
      * ArrayList.
      * @param newItem new product
      */
-    public void addProduct(Product newItem){
-        products.add(newItem);
+    public void addProduct(ArrayList<Product> newItem){
+
+        newItem.add(new Product(getName(), getCategory(), getPrice(), getStock(), getInvoiceNumber()));
+        
     }
+    
+    //returns the added products
+    public String formatLineItem(LineProduct item)
+    {
+        return (String.format(
+                "%s: $%.2f\n",item.toString(),item.getPrice()));
+    }
+
 
     /**
      * Removes a product from
@@ -117,7 +127,14 @@ public class InventorySystem {
         String list = "";
         for (LineProduct items : products){
             list += items.getName();
+            System.out.println();
         }
         return list;
     }
+
+    public static void main(String[] args) {
+        InventorySystem l = new InventorySystem();
+
+    }
+
 }

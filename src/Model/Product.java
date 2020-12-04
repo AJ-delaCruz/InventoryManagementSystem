@@ -139,11 +139,17 @@ public class Product implements LineProduct {
      * and tax of the product
      * @return info about product
      */
+
+
+
+    String productFormat = "Name              Category              Price            " +
+            "Stock            Invoice number";
     @Override
     public String toString(){
-        return "Name: " + getName() + "\n"
-                + "Price: $" + getPrice() + "\n"
-                +  "Tax: $" + getTax();
+        return productFormat +"\n" +
+                getName() + "               " +
+                getCategory() +"                " + "$"+getPrice() + "             "+
+                getStock() + "                 " + getInvoiceNumber()+"\n";
     }
 }
 

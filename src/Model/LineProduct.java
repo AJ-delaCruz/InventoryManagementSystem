@@ -12,5 +12,7 @@ public interface LineProduct {
     int getStock();
 
     String getCategory();
+
+    int getInvoiceNumber();
 }
 
