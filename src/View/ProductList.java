@@ -45,7 +45,7 @@ public class ProductList {
      *
      * @return an iterator for the products
      */
-    public Iterator<LineProduct> getItems() {
+    public Iterator<LineProduct> getProducts() {
         return new
                 Iterator<>() {
                     public boolean hasNext() {
@@ -65,7 +65,7 @@ public class ProductList {
 
     public String formatProduct() {
         String items = "";
-        Iterator<LineProduct> iter = getItems();
+        Iterator<LineProduct> iter = getProducts();
         while (iter.hasNext())
             items += iter.next();
         return items;
