@@ -72,7 +72,6 @@ public class Controller {
             // actions in Model
             // actions in View
             AddProductMessage productMessage = (AddProductMessage) message;
-            //studentModel.setName(nameMessage.getName()); // update model
             model.add(new Product(productMessage.getName(), productMessage.getCategory(),
                     productMessage.getPrice(), productMessage.getStock(),productMessage.getInvoiceNumber()));
             ///inventoryView.updateInventory(..); // update inventory
