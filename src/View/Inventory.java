@@ -34,15 +34,29 @@ public class Inventory extends JFrame {
         this.queue = queue;
         inventory = new ProductList();
 
+        JPanel topPanel = new JPanel();
         JPanel panel = new JPanel();
-        JPanel titlePanel = new JPanel();
         JPanel fieldPanel = new JPanel();
         JPanel bottomPanel = new JPanel();
+        JPanel titlePanel = new JPanel();
+        JLabel label1 = new JLabel("Product Name          ");
+        JLabel label2 = new JLabel("Category         ");
+        JLabel label3 = new JLabel("Price          ");
+        JLabel label4 = new JLabel("Stock          ");
+        JLabel label5 = new JLabel("Invoice Number");
+
+        titlePanel.add(label1);
+        titlePanel.add(label2);
+        titlePanel.add(label3);
+        titlePanel.add(label4);
+        titlePanel.add(label5);
 
 
-        JLabel title = new JLabel("Products");
+
+
+        JLabel title = new JLabel("Products                                                   ");
         title.setFont(new Font("", Font.BOLD, 15));
-        titlePanel.add(title);
+        panel.add(title);
 
 
         //field
@@ -90,8 +104,11 @@ public class Inventory extends JFrame {
         fieldPanel.add(field5);
         fieldPanel.add(complete);
 
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.add(titlePanel);
+        topPanel.add(panel);
 
-        add(titlePanel, BorderLayout.NORTH);
+        add(topPanel, BorderLayout.NORTH);
         add(new JScrollPane(textArea), BorderLayout.CENTER);
         fieldPanel.setLayout(new BoxLayout(fieldPanel, BoxLayout.Y_AXIS));
         bottomPanel.add(fieldPanel);
