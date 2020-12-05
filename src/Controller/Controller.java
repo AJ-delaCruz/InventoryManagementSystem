@@ -12,21 +12,20 @@ import java.util.concurrent.BlockingQueue;
 public class Controller {
     private BlockingQueue<Message> queue;
     //  private HomePage view; // first page
-    // private ArrayList<Product> model; // Direct reference to model
-    private Product model; // Direct reference to model
-    private Inventory inventoryView;
+    private Product productModel; // Direct reference to model
+    private Inventory inventoryView; //to test inventory
     private List<Valve> valves = new LinkedList<Valve>();
 
-    private Inventory view; //to test inventory
 
-    public Controller(Inventory view, Product models, BlockingQueue<Message> queue) {
-        this.view = view;
-        this.model = models;
-        //this.model = new ArrayList<>();
+    public Controller(Inventory inventoryView, Product productModel, BlockingQueue<Message> queue) {
+        this.inventoryView = inventoryView;
+        this.productModel = productModel;
         this.queue = queue;
         valves.add(new LoginValve());
         valves.add(new AddProductValve());
+
         valves.add(new ModifyStockValve());
+
     }
 
     public void mainLoop() {
@@ -49,9 +48,6 @@ public class Controller {
         }
     }
 
-    private void updateEmployeeInfo() {
-
-    }
 
 
     //valves
@@ -63,7 +59,7 @@ public class Controller {
         ValveResponse execute(Message message);
     }
 
-    // TODO: 12/4/20 updateInventory 
+
     private class AddProductValve implements Valve {
         @Override
         public ValveResponse execute(Message message) {
@@ -75,21 +71,19 @@ public class Controller {
             // actions in Model
             // actions in View
             AddProductMessage productMessage = (AddProductMessage) message;
-          /*  model.add(new Product(productMessage.getName(), productMessage.getCategory(),
+          /*  productModel.add(new Product(productMessage.getName(), productMessage.getCategory(),
                     productMessage.getPrice(), productMessage.getStock(),productMessage.getInvoiceNumber()));
 */
-            model.setName(productMessage.getName());
-            model.setCategory(productMessage.getCategory());
-            model.setPrice(productMessage.getPrice());
-            model.setStock(productMessage.getStock());
-            model.setInvoiceNumber(productMessage.getInvoiceNumber());
-            /*LineProduct x = new Product(models.getName(), models.getCategory(),
-                    models.getPrice(), models.getStock(), models.getInvoiceNumber());*/
+            productModel.setName(productMessage.getName());
+            productModel.setCategory(productMessage.getCategory());
+            productModel.setPrice(productMessage.getPrice());
+            productModel.setStock(productMessage.getStock());
+            productModel.setInvoiceNumber(productMessage.getInvoiceNumber());
 
-            //TODO need to put AddProductMessage and Inventory together
+
             // update inventory
-       /*     inventoryView.updateInventory(models.getName(), models.getCategory(), models.getPrice(),
-                    models.getStock(), models.getInvoiceNumber()); */
+            inventoryView.updateInventory(productModel.getName(), productModel.getCategory(), productModel.getPrice(),
+                    productModel.getStock(), productModel.getInvoiceNumber());
 
             return ValveResponse.EXECUTED;
         }

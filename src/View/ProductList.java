@@ -64,15 +64,13 @@ public class ProductList {
                 };
     }
 
-    public String formatProduct()
-    {
+    public String formatProduct() {
         String items = "";
         Iterator<LineProduct> iter = getItems();
         while (iter.hasNext())
             items += iter.next();
         return items;
     }
-
 
 
 }

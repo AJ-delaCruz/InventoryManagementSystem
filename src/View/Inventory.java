@@ -23,13 +23,13 @@ public class Inventory extends JFrame {
     JButton complete;
     JTextArea textArea;
     ProductList inventory;
-    LineProduct x;
 
- /*   public static Inventory init(BlockingQueue<Message> queue) {
-        // Create object of type view
-        return new Inventory(queue);
-    }
-*/
+
+    /*   public static Inventory init(BlockingQueue<Message> queue) {
+           // Create object of type view
+           return new Inventory(queue);
+       }
+   */
     public Inventory(BlockingQueue<Message> queue) {
         this.queue = queue;
         inventory = new ProductList();
@@ -49,10 +49,7 @@ public class Inventory extends JFrame {
         textArea = new JTextArea(20, 40);
         inventory.addChangeListener(event ->
                 textArea.setText(inventory.formatProduct()));
-       // inventory.addProduct(x);
 
-       /* LineProduct x = new Product("das", "category", 1, 21, 12314);
-        inventory.addProduct(x);*/
 
         //adding
         field1 = new JTextField("Product Name", 20);
@@ -62,7 +59,7 @@ public class Inventory extends JFrame {
         field5 = new JTextField("InvoiceNumber", 20);
         complete = new JButton("Complete");
 
-        //TODO make queue work with inventory
+        //adds products
         complete.addActionListener(event -> {
             ArrayList<LineProduct> product = new ArrayList<>();
             String name = field1.getText();
@@ -72,15 +69,14 @@ public class Inventory extends JFrame {
             int invoiceNumber = Integer.parseInt(field5.getText());
 
             product.add(new Product(name, category, price, stock, invoiceNumber)); //for the text file
-            LineProduct x = new Product(name, category, price, stock, invoiceNumber); //for the JtextArea
 
-            inventory.addProduct(x);
+           /* LineProduct x = new Product(name, category, price, stock, invoiceNumber); //for the JtextArea
+            inventory.addProduct(x);*/
             try {
-               // queue.put(new AddProductMessage(name, category, price, stock, invoiceNumber));
+                queue.put(new AddProductMessage(name, category, price, stock, invoiceNumber));
                 addProduct(product);
                 JOptionPane.showMessageDialog(Inventory.this, "Successful");
-            } catch (IOException e)// | InterruptedException e)
-            {
+            } catch (IOException | InterruptedException e) {
                 JOptionPane.showMessageDialog(Inventory.this, "Unsuccessful",
                         "Warning", JOptionPane.WARNING_MESSAGE);
             }
@@ -115,10 +111,6 @@ public class Inventory extends JFrame {
     }
 
 
-
-
-
-
     public void addProduct(ArrayList<LineProduct> products) throws IOException {
 
         FileWriter appendFile = new FileWriter("products.txt", true);
@@ -135,22 +127,20 @@ public class Inventory extends JFrame {
 
     }
 
-    //implement to align with blocking queue controller
- /*   public void updateInventory(String name, String category, double price, int stock, int invoiceNumber) {
+    //update inventory
+    public void updateInventory(String name, String category, double price, int stock, int invoiceNumber) {
 
-        x = new Product(name, category, price, stock, invoiceNumber); //for the JtextArea
+        LineProduct x = new Product(name, category, price, stock, invoiceNumber); //for the JtextArea
         inventory.addProduct(x);
 
 
-    }*/
-
-
-        public static void main(String[] args) {
-        //test
-     //  Inventory l = new Inventory();
     }
 
 
+    public static void main(String[] args) {
+        //test
+        //  Inventory l = new Inventory();
+    }
 
 
 }
