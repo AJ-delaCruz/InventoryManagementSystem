@@ -50,8 +50,8 @@ public class Inventory extends JFrame {
             double price = Double.parseDouble(field3.getText());
             int stock = Integer.parseInt(field4.getText());
             int invoiceNumber = Integer.parseInt(field5.getText());
-            product.add(new Product(name, category, price, stock, invoiceNumber));
-            LineProduct x = new Product(name, category, price, stock, invoiceNumber);
+            product.add(new Product(name, category, price, stock, invoiceNumber)); //for the text file
+            LineProduct x = new Product(name, category, price, stock, invoiceNumber); //for the JtextArea
 
             inventory.addProduct(x);
             try {
