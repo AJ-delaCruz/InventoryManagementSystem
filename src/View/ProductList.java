@@ -19,7 +19,7 @@ public class ProductList {
     }
 
     /**
-     * Adds an product to the product list.
+     * Adds a product to the product list.
      *
      * @param product the product to add
      */

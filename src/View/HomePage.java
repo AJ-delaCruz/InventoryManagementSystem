@@ -39,25 +39,30 @@ public class HomePage extends JFrame {
 
         JButton employeeLogin = new JButton("Employee");
 
-      /*  employeeLogin.addActionListener(event -> {
+     /*   employeeLogin.addActionListener(event -> {
             setVisible(false);
-            (new EmployeeLogin()).setVisible(true);
+            (new EmployeeLogin(queue)).setVisible(true);
         });
+*/
 
-        //logInPanel.add(logInTitle);*/
-        logInPanel.add(customerLogin);
-        logInPanel.add(employeeLogin);
 
         //employee message
         employeeLogin.addActionListener(event -> {
             try {
                 this.queue.put(new LoginMessage()); // <--- login to the queue
                 setVisible(false);
-                (new EmployeeLogin()).setVisible(true);
+                (new EmployeeLogin(queue)).setVisible(true);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         });
+
+
+        //logInPanel.add(logInTitle);*/
+        logInPanel.add(customerLogin);
+        logInPanel.add(employeeLogin);
+
+
 
 
         JLabel signUpTitle = new JLabel("Sign up as:");

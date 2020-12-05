@@ -97,6 +97,20 @@ public class Product implements LineProduct {
         return price;
     }
 
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     /**
      * Returns if the product is
      * on sale or not.
@@ -133,6 +147,23 @@ public class Product implements LineProduct {
     public void setSale(boolean sale){
         this.sale = sale;
     }
+
+
+
+
+
+
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+
+
 
     /**
      * Returns the name, price,

@@ -1,5 +1,6 @@
 package View;
 
+import Controller.AddProductMessage;
 import Controller.Message;
 import Model.LineProduct;
 import Model.Product;
@@ -14,10 +15,24 @@ import java.util.concurrent.BlockingQueue;
 
 public class Inventory extends JFrame {
     BlockingQueue<Message> queue;
+    JTextField field1;
+    JTextField field2;
+    JTextField field3;
+    JTextField field4;
+    JTextField field5;
+    JButton complete;
+    JTextArea textArea;
+    ProductList inventory;
+    LineProduct x;
 
-    public Inventory(/*BlockingQueue<Message> queue*/) {
+ /*   public static Inventory init(BlockingQueue<Message> queue) {
+        // Create object of type view
+        return new Inventory(queue);
+    }
+*/
+    public Inventory(BlockingQueue<Message> queue) {
         this.queue = queue;
-        ProductList inventory = new ProductList();
+        inventory = new ProductList();
 
         JPanel panel = new JPanel();
         JPanel titlePanel = new JPanel();
@@ -31,18 +46,23 @@ public class Inventory extends JFrame {
 
 
         //field
-        JTextArea textArea = new JTextArea(20, 40);
+        textArea = new JTextArea(20, 40);
         inventory.addChangeListener(event ->
                 textArea.setText(inventory.formatProduct()));
+       // inventory.addProduct(x);
 
+       /* LineProduct x = new Product("das", "category", 1, 21, 12314);
+        inventory.addProduct(x);*/
 
         //adding
-        JTextField field1 = new JTextField("Product Name", 20);
-        JTextField field2 = new JTextField("Category", 20);
-        JTextField field3 = new JTextField("Price", 20);
-        JTextField field4 = new JTextField("Quantity", 20);
-        JTextField field5 = new JTextField("Invoice Number", 20);
-        JButton complete = new JButton("Complete");
+        field1 = new JTextField("Product Name", 20);
+        field2 = new JTextField("Category", 20);
+        field3 = new JTextField("Price", 20);
+        field4 = new JTextField("Stock", 20);
+        field5 = new JTextField("InvoiceNumber", 20);
+        complete = new JButton("Complete");
+
+        //TODO make queue work with inventory
         complete.addActionListener(event -> {
             ArrayList<LineProduct> product = new ArrayList<>();
             String name = field1.getText();
@@ -50,12 +70,13 @@ public class Inventory extends JFrame {
             double price = Double.parseDouble(field3.getText());
             int stock = Integer.parseInt(field4.getText());
             int invoiceNumber = Integer.parseInt(field5.getText());
+
             product.add(new Product(name, category, price, stock, invoiceNumber)); //for the text file
             LineProduct x = new Product(name, category, price, stock, invoiceNumber); //for the JtextArea
 
             inventory.addProduct(x);
             try {
-                //queue.put(new AddProductMessage(name, category, price, stock, invoiceNumber));
+               // queue.put(new AddProductMessage(name, category, price, stock, invoiceNumber));
                 addProduct(product);
                 JOptionPane.showMessageDialog(Inventory.this, "Successful");
             } catch (IOException e)// | InterruptedException e)
@@ -95,6 +116,9 @@ public class Inventory extends JFrame {
 
 
 
+
+
+
     public void addProduct(ArrayList<LineProduct> products) throws IOException {
 
         FileWriter appendFile = new FileWriter("products.txt", true);
@@ -112,29 +136,21 @@ public class Inventory extends JFrame {
     }
 
     //implement to align with blocking queue controller
-    public void updateInventory() {
+ /*   public void updateInventory(String name, String category, double price, int stock, int invoiceNumber) {
 
-    }
+        x = new Product(name, category, price, stock, invoiceNumber); //for the JtextArea
+        inventory.addProduct(x);
+
+
+    }*/
 
 
         public static void main(String[] args) {
         //test
-       Inventory l = new Inventory();
+     //  Inventory l = new Inventory();
     }
 
 
-
-
-/*
- public void updateNameInView(String value) {
-            this.studentNameLabel.setText(value);
-        }
-
-        public void updateListOfClassesInView(ArrayList<String> classes) {
-            this.allClassesLabel.setText(classes.toString());
-        }
-
-*/
 
 
 }

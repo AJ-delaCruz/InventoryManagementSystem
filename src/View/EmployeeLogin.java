@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Message;
 import Model.Employee;
 
 import javax.swing.*;
@@ -7,12 +8,13 @@ import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.BlockingQueue;
 
 public class EmployeeLogin extends JFrame {
+    private BlockingQueue<Message> queue;
 
-
-    public EmployeeLogin() {
-
+    public EmployeeLogin(BlockingQueue<Message> queue) {
+        this.queue = queue;
         JPanel panel = new JPanel();
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
@@ -33,7 +35,7 @@ public class EmployeeLogin extends JFrame {
             for (Employee x : employees) {
                 if (x.getAccountNumber() == name && x.getPassword().equals(password)) {
                     setVisible(false);
-                    (new Inventory()).setVisible(true);
+                    (new Inventory(queue)).setVisible(true);
 
                 } else JOptionPane.showMessageDialog(EmployeeLogin.this, "Wrong username or password",
                         "Warning", JOptionPane.WARNING_MESSAGE);
