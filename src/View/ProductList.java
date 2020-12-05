@@ -59,7 +59,6 @@ public class ProductList {
                     public void remove() {
                         throw new UnsupportedOperationException();
                     }
-
                     private int current = 0;
                 };
     }
