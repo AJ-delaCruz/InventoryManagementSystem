@@ -1,4 +1,10 @@
-{
+package Controller;
+
+/**
+ * Class AddProductMessage
+ * Message of adding product
+ */
+public class AddProductMessage implements Message {
     private String name;
     private String category;
     private double price;
