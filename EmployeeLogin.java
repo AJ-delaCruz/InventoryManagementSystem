@@ -102,7 +102,6 @@ public class EmployeeLogin extends JFrame {
             JOptionPane.showMessageDialog(EmployeeLogin.this, "No file found",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
-        //System.out.println(employees);
         return employees;
     }
 
