@@ -110,10 +110,10 @@ public class Controller {
             if (message.getClass() != LoginMessage.class) {
                 return ValveResponse.MISS;
             }
-            // otherwise message is of LoginMessage type
-            // actions in Model and View
+
+            inventoryView.setVisible(true);
+
             return ValveResponse.EXECUTED;
         }
     }
 }
-

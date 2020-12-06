@@ -2,6 +2,7 @@ package View;
 
 import Controller.Message;
 import Model.Employee;
+import Controller.LoginMessage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,7 @@ import java.util.concurrent.BlockingQueue;
 public class EmployeeLogin extends JFrame {
     private BlockingQueue<Message> queue;
     public static EmployeeLogin init(BlockingQueue<Message> queue) {
-        // Create object of type view
+
         return new EmployeeLogin(queue);
     }
     public EmployeeLogin(BlockingQueue<Message> queue) {
@@ -21,9 +22,9 @@ public class EmployeeLogin extends JFrame {
         JPanel panel = new JPanel();
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
-        JLabel title = new JLabel("Employee Log in");
+        JLabel title = new JLabel("Inventory Management System Login");
         title.setFont(new Font("", Font.BOLD, 15));
-        JLabel acc = new JLabel("Username");
+        JLabel acc = new JLabel("Account number");
         JLabel pwd = new JLabel("Password");
         JTextField accField = new JTextField(10);
         JTextField pwdField = new JTextField(10);
@@ -34,15 +35,27 @@ public class EmployeeLogin extends JFrame {
             int name = Integer.parseInt(accField.getText());
             String password = pwdField.getText();
             ArrayList<Employee> employees = load();
-
+            boolean foundEmployee = false;
             for (Employee x : employees) {
                 if (x.getAccountNumber() == name && x.getPassword().equals(password)) {
-                    setVisible(false);
-                    (new Inventory(queue)).setVisible(true);
+                    foundEmployee = true;
+                    break;
+                }
+            }
 
-                } else JOptionPane.showMessageDialog(EmployeeLogin.this, "Wrong username or password",
+            if (foundEmployee) {
+                try {
+                    queue.put(new LoginMessage(name, password));
+                    setVisible(false);
+                }
+                catch (InterruptedException e) {
+                    JOptionPane.showMessageDialog(EmployeeLogin.this, "Unsuccessful",
+                            "Warning", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(EmployeeLogin.this, "Wrong username or password",
                         "Warning", JOptionPane.WARNING_MESSAGE);
-                break;
             }
 
         });
@@ -65,7 +78,7 @@ public class EmployeeLogin extends JFrame {
         setVisible(true);
         setSize(300, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Employee");
+        setTitle("Inventory Management System");
     }
 
     public ArrayList<Employee> load() {
