@@ -2,8 +2,6 @@ package View;
 
 import Controller.Message;
 import Model.Employee;
-import Controller.LoginMessage;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -11,20 +9,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * EmployeeLogin Class
+ * A login page for Employee to log-in
+ * to the system.
+ */
 public class EmployeeLogin extends JFrame {
     private BlockingQueue<Message> queue;
-    public static EmployeeLogin init(BlockingQueue<Message> queue) {
 
-        return new EmployeeLogin(queue);
-    }
+    /**
+     * Constructor for the Employee Login Class
+     * @param queue a queue for adding in Messages
+     */
     public EmployeeLogin(BlockingQueue<Message> queue) {
         this.queue = queue;
         JPanel panel = new JPanel();
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
-        JLabel title = new JLabel("Inventory Management System Login");
+        JLabel title = new JLabel("Employee Log in");
         title.setFont(new Font("", Font.BOLD, 15));
-        JLabel acc = new JLabel("Account number");
+        JLabel acc = new JLabel("Username");
         JLabel pwd = new JLabel("Password");
         JTextField accField = new JTextField(10);
         JTextField pwdField = new JTextField(10);
@@ -35,31 +39,18 @@ public class EmployeeLogin extends JFrame {
             int name = Integer.parseInt(accField.getText());
             String password = pwdField.getText();
             ArrayList<Employee> employees = load();
-            boolean foundEmployee = false;
+
             for (Employee x : employees) {
                 if (x.getAccountNumber() == name && x.getPassword().equals(password)) {
-                    foundEmployee = true;
-                    break;
-                }
-            }
-
-            if (foundEmployee) {
-                try {
-                    queue.put(new LoginMessage(name, password));
                     setVisible(false);
-                }
-                catch (InterruptedException e) {
-                    JOptionPane.showMessageDialog(EmployeeLogin.this, "Unsuccessful",
-                            "Warning", JOptionPane.WARNING_MESSAGE);
-                }
-            }
-            else {
-                JOptionPane.showMessageDialog(EmployeeLogin.this, "Wrong username or password",
+                    (new Inventory(queue)).setVisible(true);
+
+                } else JOptionPane.showMessageDialog(EmployeeLogin.this, "Wrong username or password",
                         "Warning", JOptionPane.WARNING_MESSAGE);
+                break;
             }
 
         });
-
 
         panel1.add(acc);
         panel1.add(accField);
@@ -69,7 +60,6 @@ public class EmployeeLogin extends JFrame {
         panel.add(panel1);
         panel.add(panel2);
         panel.add(login);
-        // panel.setLayout(new GridLayout(2,2));
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         add(panel);
@@ -78,9 +68,14 @@ public class EmployeeLogin extends JFrame {
         setVisible(true);
         setSize(300, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Inventory Management System");
+        setTitle("Employee");
     }
 
+    /**
+     * Reads the file of the employees.txt and loads
+     * each customer to one ArrayList
+     * @return An Arraylist of Employee
+     */
     public ArrayList<Employee> load() {
         ArrayList<Employee> employees = new ArrayList<>();
 
@@ -107,17 +102,9 @@ public class EmployeeLogin extends JFrame {
             JOptionPane.showMessageDialog(EmployeeLogin.this, "No file found",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
-        //System.out.println(employees);
         return employees;
     }
 
-
-    //test
-    public static void main(String[] args) {
-        //  JFrame frame = new EmployeeLogin();
-
-    }
-
-
 }
+
 
