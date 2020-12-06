@@ -1,6 +1,11 @@
 package Model;
 import java.util.Objects;
 
+/**
+ * Employee Class
+ * Represents an Employee
+ * account info
+ */
 public class Employee {
     private int accountNumber;
     private String password;

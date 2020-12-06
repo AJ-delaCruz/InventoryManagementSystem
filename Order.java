@@ -1,6 +1,10 @@
 package Model;
 import java.util.ArrayList;
 
+/**
+ * Class Order
+ * Represents the Customers order
+ */
 public class Order {
     ArrayList<Product> shoppingList;
 

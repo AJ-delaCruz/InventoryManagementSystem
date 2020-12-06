@@ -1,5 +1,11 @@
 package Model;
 
+/**
+ * Class DiscountProduct
+ * Uses the Decorator Pattern.
+ * Change a class product info
+ * to a discounted product.
+ */
 public class DiscountProduct implements LineProduct{
     private LineProduct product;
     private double discount;
@@ -47,11 +53,16 @@ public class DiscountProduct implements LineProduct{
     /**
      * Returns the category of
      * the product
-     * @return
+     * @return product category
      */
     @Override
     public String getCategory() {
         return product.getCategory();
+    }
+
+    @Override
+    public int getInvoiceNumber() {
+        return 0;
     }
 
     /**

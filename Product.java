@@ -1,5 +1,9 @@
 package Model;
 
+/**
+ *  Class Product
+ *  Represents a product
+ */
 public class Product implements LineProduct {
     private String name;
     private String category;
@@ -11,7 +15,30 @@ public class Product implements LineProduct {
     private double discount;
 
     /**
-     * Constructor for the Product class
+     * Default Constructor
+     */
+    public Product() {
+
+    }
+
+    /**
+     * 2nd Constructor for the Product Class
+     * @param name the product name
+     * @param category the product category
+     * @param price the product's price
+     * @param stock the number of the product
+     * @param invoiceNumber the ID number of product
+     */
+    public Product(String name, String category, double price, int stock, int invoiceNumber) {
+        this.name = name;
+        this.category = category;
+        this.price = price;
+        this.stock = stock;
+        this.invoiceNumber = invoiceNumber;
+    }
+
+    /**
+     * 3rd Constructor for the Product class
      * @param name the product name
      * @param category the product category
      * @param price the product's price
@@ -30,6 +57,7 @@ public class Product implements LineProduct {
         this.tax = price;
         this.sale = sale;
     }
+
 
     /**
      * Returns the product name
@@ -85,6 +113,30 @@ public class Product implements LineProduct {
     }
 
     /**
+     * Sets the name of a product
+     * @param name products new name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Sets products category
+     * @param category products new category
+     */
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    /**
+     * Sets the products price
+     * @param price products new price
+     */
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    /**
      * Returns if the product is
      * on sale or not.
      * @return if the product is
@@ -122,15 +174,34 @@ public class Product implements LineProduct {
     }
 
     /**
+     * Returns product's discount
+     * @return products discount
+     */
+    public double getDiscount() {
+        return discount;
+    }
+
+    /**
+     * Sets products discount
+     * @param discount new discount
+     */
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    /**
      * Returns the name, price,
      * and tax of the product
      * @return info about product
      */
     @Override
     public String toString(){
-        return "Name: " + getName() + "\n"
-                + "Price: $" + getPrice() + "\n"
-                +  "Tax: $" + getTax();
+        String productFormat = "Name              Category              Price            " +
+                "Stock            Invoice number";
+        return productFormat +"\n" +
+                getName() + "               " +
+                getCategory() +"                " + "$"+getPrice() + "             "+
+                getStock() + "                 " + getInvoiceNumber()+"\n";
     }
 }
 
