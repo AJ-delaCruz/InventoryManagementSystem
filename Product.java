@@ -1,10 +1,4 @@
-package Model;
-
-/**
- *  Class Product
- *  Represents a product
- */
-public class Product implements LineProduct {
+{
     private String name;
     private String category;
     private double price;
@@ -18,7 +12,14 @@ public class Product implements LineProduct {
      * Default Constructor
      */
     public Product() {
-
+        this.name = null;
+        this.category = null;
+        this.price = 0;
+        this.stock = 0;
+        this.invoiceNumber = 0;
+        this.tax = 0;
+        this.sale = false;
+        this.discount = 0;
     }
 
     /**
@@ -35,6 +36,9 @@ public class Product implements LineProduct {
         this.price = price;
         this.stock = stock;
         this.invoiceNumber = invoiceNumber;
+        this.tax = 0;
+        this.sale = false;
+        this.discount = 0;
     }
 
     /**
@@ -204,4 +208,3 @@ public class Product implements LineProduct {
                 getStock() + "                 " + getInvoiceNumber()+"\n";
     }
 }
-
