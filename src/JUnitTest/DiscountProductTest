@@ -1,0 +1,19 @@
+package JUnitTest;
+
+import Model.Product;
+import Model.DiscountProduct;
+import junit.framework.TestCase;
+
+public class DiscountProductTest extends TestCase {
+    public void test(){
+        Product test = new Product("IPhone", "Electronics", 850.00, 300, 123456);
+        DiscountProduct product = new DiscountProduct(test, 20.00);
+
+        assertFalse(test.getPrice() == product.getPrice());
+
+        assertTrue(test.getPrice() > product.getPrice());
+
+        assertTrue(product.getName().equals(test.getName()));
+
+    }
+}
