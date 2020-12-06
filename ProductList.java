@@ -1,8 +1,6 @@
 package View;
 
 import Model.LineProduct;
-import Model.Product;
-
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.util.ArrayList;
