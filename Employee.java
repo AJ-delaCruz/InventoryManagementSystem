@@ -64,4 +64,3 @@ public class Employee {
         return Objects.hash(accountNumber, password);
     }
 }
-
