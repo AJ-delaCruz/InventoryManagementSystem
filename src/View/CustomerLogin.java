@@ -1,6 +1,9 @@
+/*
 package View;
 
-import Model.Customer;
+*/
+/*import Model.Customer;*//*
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -71,8 +74,10 @@ public class CustomerLogin extends JFrame {
             File myFile = new File("employees.txt"); //reads file
             Scanner inputFile = new Scanner(myFile);
 
-            /*int nameID;
-            String pwd;*/
+            */
+/*int nameID;
+            String pwd;*//*
+
             while (inputFile.hasNextLine()) {
 
                 String line = inputFile.nextLine();
@@ -122,3 +127,4 @@ class WelcomeFrame extends JFrame {
 
 
 
+*/

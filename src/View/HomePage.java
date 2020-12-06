@@ -1,4 +1,4 @@
-package View;
+/*package View;
 
 import Controller.LoginMessage;
 import Controller.Message;
@@ -39,12 +39,11 @@ public class HomePage extends JFrame {
 
         JButton employeeLogin = new JButton("Employee");
 
-     /*   employeeLogin.addActionListener(event -> {
-            setVisible(false);
-            (new EmployeeLogin(queue)).setVisible(true);
-        });
-*/
-
+//      employeeLogin.addActionListener(event -> {
+//            setVisible(false);
+//            (new EmployeeLogin(queue)).setVisible(true);
+//        });
+//
 
         //employee message
         employeeLogin.addActionListener(event -> {
@@ -58,7 +57,7 @@ public class HomePage extends JFrame {
         });
 
 
-        //logInPanel.add(logInTitle);*/
+        //logInPanel.add(logInTitle);
         logInPanel.add(customerLogin);
         logInPanel.add(employeeLogin);
 
@@ -112,3 +111,4 @@ public class HomePage extends JFrame {
 
     }
 }
+*/

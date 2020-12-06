@@ -11,13 +11,14 @@ import java.util.concurrent.BlockingQueue;
 
 public class Controller {
     private BlockingQueue<Message> queue;
-    //  private HomePage view; // first page
+    //private HomePage view; // first page
     private Product productModel; // Direct reference to model
     private Inventory inventoryView; //to test inventory
     private List<Valve> valves = new LinkedList<Valve>();
+    private EmployeeLogin employeeView;
 
-
-    public Controller(Inventory inventoryView, Product productModel, BlockingQueue<Message> queue) {
+    public Controller(EmployeeLogin employeeView, /*HomePage view, *//*Inventory inventoryView,*/ Product productModel, BlockingQueue<Message> queue) {
+        this.employeeView = employeeView;
         this.inventoryView = inventoryView;
         this.productModel = productModel;
         this.queue = queue;

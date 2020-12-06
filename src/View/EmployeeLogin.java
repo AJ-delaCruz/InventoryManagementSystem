@@ -12,7 +12,10 @@ import java.util.concurrent.BlockingQueue;
 
 public class EmployeeLogin extends JFrame {
     private BlockingQueue<Message> queue;
-
+    public static EmployeeLogin init(BlockingQueue<Message> queue) {
+        // Create object of type view
+        return new EmployeeLogin(queue);
+    }
     public EmployeeLogin(BlockingQueue<Message> queue) {
         this.queue = queue;
         JPanel panel = new JPanel();
