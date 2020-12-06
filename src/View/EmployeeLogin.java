@@ -23,15 +23,19 @@ public class EmployeeLogin extends JFrame {
      */
     public EmployeeLogin(BlockingQueue<Message> queue) {
         this.queue = queue;
+
         JPanel panel = new JPanel();
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
+
         JLabel title = new JLabel("Employee Log in");
         title.setFont(new Font("", Font.BOLD, 15));
         JLabel acc = new JLabel("Username");
         JLabel pwd = new JLabel("Password");
+
         JTextField accField = new JTextField(10);
         JTextField pwdField = new JTextField(10);
+
         JButton login = new JButton("Login");
 
         //login button

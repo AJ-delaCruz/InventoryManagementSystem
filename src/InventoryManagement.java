@@ -1,33 +1,27 @@
 import Controller.*;
 import View.*;
 import Model.*;
-
-import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-
-//main
+/**
+ * Class Inventory Management
+ * Class that starts the program
+ */
 public class InventoryManagement {
-
-    private static BlockingQueue<Message> queue = new LinkedBlockingQueue<>();
-    //private static HomePage view;
-    private static EmployeeLogin view;
-    //private static Inventory view;
-    //private static ArrayList<Product> model;
-    private static Product model;
-
     public static void main(String[] args) {
-        //view = HomePage.init(queue);
-        view = EmployeeLogin.init(queue);
-        //view = new Inventory(queue);
-        // model = new ArrayList<>();
-        model = new Product();
-        Controller controller = new Controller(view, model, queue);
+        BlockingQueue<Message> queue = new LinkedBlockingQueue<>();
+        Inventory view = new Inventory(queue);
+        view.setVisible(false);
+        Product model = new Product();
 
+        new EmployeeLogin(queue).setVisible(true);
+
+        Controller controller = new Controller(view, model, queue);
         controller.mainLoop();
+
+        // When everything is done, dispose of everything
         view.dispose();
         queue.clear();
     }
-
 }
